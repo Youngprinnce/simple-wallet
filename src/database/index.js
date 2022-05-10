@@ -5,5 +5,5 @@ const transactionRepository = require('./repository/transaction.repository');
 module.exports = {
   dbConnection,
   userRepository,
-  transactionRepository
+  transactionRepository,
 };

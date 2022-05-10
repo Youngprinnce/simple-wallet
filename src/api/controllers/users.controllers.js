@@ -68,7 +68,7 @@ module.exports = {
       const updatedUser = await UserService.updateBalance({ id: userId }, { balance: newBalance });
       return sendSuccess(res, updatedUser, 'Deposit successful', 200);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       if (error.isJoi === true) return sendError(res, error.details[0].message, 422);
       return sendError(res, error.message, error.statusCode || 500);
     }
