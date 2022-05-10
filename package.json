@@ -4,11 +4,11 @@
   "description": "Simple Wallet",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --recursive --timeout 50000",
+    "test": "cross-env NODE_ENV=test mocha --recursive --timeout 50000",
     "dev": "nodemon server.js",
+    "start": "node server.js",
     "migrate:dev": "npx knex migrate:latest --knexfile src/database/knexfile.js --env development",
     "migrate:test": "npx knex migrate:latest --knexfile src/database/knexfile.js --env test",
-    "seed:test": "npx knex seed:run --knexfile src/database/knexfile.js --env test",
     "lint": "eslint . --ext .js --fix"
   },
   "keywords": [],
@@ -18,6 +18,7 @@
     "bcrypt": "^5.0.1",
     "bluebird": "^3.7.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "http": "^0.0.1-security",
