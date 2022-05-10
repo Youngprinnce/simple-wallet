@@ -20,7 +20,10 @@ const login = Joi.object().keys({
   password: Joi.string().required(),
 });
 
+const amountSchema = Joi.string().required();
+
 module.exports = {
   register,
   login,
+  amountSchema,
 };

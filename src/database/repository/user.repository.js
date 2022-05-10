@@ -17,4 +17,24 @@ module.exports = {
     }
     return null;
   },
+
+  myTransactions: async (account_no, limit = 5) => {
+    const transactions = await db('transactions')
+      .join('users', 'users.account_no', '=', 'transactions.receiver')
+      .where({ sender: account_no })
+      .select('users.firstname', 'users.lastname', 'transactions.id', 'transactions.amount', 'transactions.created_at')
+      .orderBy('transactions.created_at', 'desc')
+      .limit(limit);
+    return transactions;
+  },
+
+  // eslint-disable-next-line consistent-return
+  updateBalance: async (filter, credentials) => {
+    const rows = await db.transaction(async (trx) => await db('users').where(filter).update(credentials).transacting(trx));
+    if (rows > 0) {
+      const details = await db('users').where(filter).first('id', 'firstname', 'lastname', 'balance', 'account_no');
+      return details;
+    }
+    throwError('User not found', 404);
+  },
 };
