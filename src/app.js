@@ -10,6 +10,7 @@ const swaggerDefinition = require('./config/swagger');
 // Routers
 const baseRouter = require('./api/routes');
 const userRouter = require('./api/routes/users.routes');
+const transactionRouter = require('./api/routes/transactions.routes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ if (NODE_ENV === 'DEVELOPMENT') {
 // Routes
 app.use('/', baseRouter);
 app.use('/api/v1', userRouter);
+app.use('/api/v1', transactionRouter);
 
 // error handler
 app.use((err, req, res, next) => {

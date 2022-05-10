@@ -1,7 +1,9 @@
-const { register, login, amountSchema} = require('./users.validations');
+const { transfer } = require('./transactions.validations');
+const { register, login, amountSchema } = require('./users.validations');
 
 module.exports = {
   register,
   login,
   amountSchema,
+  transfer,
 };
