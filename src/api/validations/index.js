@@ -1,5 +1,6 @@
-const { register } = require('./users.validations');
+const { register, login } = require('./users.validations');
 
 module.exports = {
   register,
+  login,
 };

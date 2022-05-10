@@ -14,6 +14,13 @@ const register = Joi.object().keys({
   lastname: Joi.string().required().max(50).min(2),
 });
 
+const login = Joi.object().keys({
+  email: Joi.string().email().required().trim()
+    .lowercase(),
+  password: Joi.string().required(),
+});
+
 module.exports = {
   register,
+  login,
 };
