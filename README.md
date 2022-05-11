@@ -50,4 +50,4 @@ If you have a password and user for your MySQL database, follow the instruction 
 - Run `npm run dev`
 
 ### Documentation (localhost)
-- Click [here](http://localhost:5000/docs) to test to the application
+- Click [here](http://localhost:5000/docs) view the documentation and test the application on localhost
