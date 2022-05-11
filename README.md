@@ -13,8 +13,8 @@ A simple backend application that allows user's signup and perform basic transac
 - KnexJs
 - MySQL
 
-###Technical Design Documentation
-[Design Documentation](https://docs.google.com/document/d/1u9wFV3qv3rKIaYP6lCR-wiuLu0D9OOQdpjN7982dt_k/edit?usp=sharing)
+### Technical Design Documentation
+- [Design Documentation](https://docs.google.com/document/d/1u9wFV3qv3rKIaYP6lCR-wiuLu0D9OOQdpjN7982dt_k/edit?usp=sharing)
 
 ### How to setup project on your local machine
 #### Pre-requisite
