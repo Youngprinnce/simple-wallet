@@ -13,6 +13,8 @@ module.exports = {
   async findBy(credentials) {
     const user = await db('users').where(credentials).first('id', 'email', 'firstname', 'lastname', 'balance', 'password', 'account_no');
     if (user) {
+      const transactions = await this.myTransactions(user.account_no);
+      user.transactions = transactions;
       return new UserModel(user);
     }
     return null;

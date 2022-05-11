@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha --recursive --timeout 50000",
-    "dev": "nodemon server.js",
+    "dev": "nodemon -e js,yaml,json server.js",
     "start": "node server.js",
     "migrate:dev": "npx knex migrate:latest --knexfile src/database/knexfile.js --env development",
     "migrate:test": "npx knex migrate:latest --knexfile src/database/knexfile.js --env test",

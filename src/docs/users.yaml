@@ -1,0 +1,110 @@
+/users/register:
+  post:
+    tags: [Users]
+    description: Sign up a new user
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [firstname, lastname, email, password]
+            properties:
+              firstname:
+                type: string
+                example: foo
+                required: true
+                description: firstname of the user
+              lastname:
+                type: string
+                example: bar
+                description: lastname of the user
+              email:
+                type: string
+                example: foo@bar.com
+                description: email of the user
+              password:
+                type: string
+                example: Foobar!1
+                description: password of the user
+    responses:
+      201:
+        description: The user has been created
+      422:
+        description: Validation error
+
+/users/login:
+  post:
+    tags: [Users]
+    description: Login a user
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: foo@bar.com
+                required: true
+                description: email or mobile of the user
+              password:
+                type: string
+                example: Foobar!1
+                required: true
+                description: password of the user
+    responses:
+      200:
+        description: The user has been logged in
+      422:
+        description: Validation error
+
+/users/deposit:
+  post:
+    tags: [Users]
+    description: Deposit money to the user's account
+    security:
+      - bearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              amount:
+                type: string
+    responses:
+      200:
+        description: The user account got funded
+      422:
+        description: Validation error
+
+/users/withdraw:
+  post:
+    tags: [Users]
+    description: Withdraw money from the user's account
+    security:
+      - bearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              amount:
+                type: string
+    responses:
+      200:
+        description: The user account got debited
+      422:
+        description: Validation error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+tags:
+  name: Users
+  description: The User's API

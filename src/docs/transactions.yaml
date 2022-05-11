@@ -1,0 +1,39 @@
+/transactions/transfer:
+  post:
+    tags: [Transactions]
+    description: Sign up a new user
+    security:
+      - bearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [firstname, lastname, email, password]
+            properties:
+              receiver:
+                type: string
+                example: 05a9e80e-c0c0-46b8-85bb-e4faaf60634e
+                required: true
+                description: receiver of the transaction
+              amount:
+                type: string
+                example: 100.00
+                required: true
+                description: amount of the transaction
+    responses:
+      201:
+        description: The transaction has been created
+      422:
+        description: Validation error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+tags:
+  name: Transactions
+  description: The Transaction's API

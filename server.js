@@ -13,8 +13,8 @@ process.on('uncaughtException', (err) => {
     level: 'error',
     message: err.message,
   });
-  logger.info('Shutting down due to uncaught exception');
   // Close server & exit process
+  logger.info('Shutting down due to uncaught exception');
   server.close(() => process.exit(1));
 });
 

@@ -6,12 +6,15 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const { NODE_ENV } = require('./config');
 const swaggerDefinition = require('./config/swagger');
+const notFound = require('./api/middlewares/404');
+const errorHandler = require('./api/middlewares/error');
 
 // Routers
-const baseRouter = require('./api/routes');
-const userRouter = require('./api/routes/users.routes');
-const transactionRouter = require('./api/routes/transactions.routes');
+const baseRoutes = require('./api/routes');
+const userRoutes = require('./api/routes/users.routes');
+const transactionRoutes = require('./api/routes/transactions.routes');
 
+// Create express app
 const app = express();
 
 const options = {
@@ -30,31 +33,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // logging
-if (NODE_ENV === 'DEVELOPMENT') {
+if (NODE_ENV === 'development') {
   app.use(morgan('dev'));
 } else {
   app.use(morgan('tiny'));
 }
 
 // Routes
-app.use('/', baseRouter);
-app.use('/api/v1', userRouter);
-app.use('/api/v1', transactionRouter);
+app.use('/', baseRoutes);
+app.use('/api/v1', userRoutes);
+app.use('/api/v1', transactionRoutes);
 
 // error handler
-app.use((err, req, res, next) => {
-  res.status(500).json({
-    success: false,
-    message: err.message,
-  });
-});
+app.use(errorHandler);
 
 // error handler for 404
-app.use((req, res, next) => {
-  res.status(404).json({
-    success: false,
-    message: 'Could not find the requested resource on the server!',
-  });
-});
+app.use(notFound);
 
 module.exports = app;
