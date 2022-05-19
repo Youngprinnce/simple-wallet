@@ -40,8 +40,8 @@ If you have a password and user for your MySQL database, follow the instruction 
 - Run `npm install` 
 
 #### Run the migration
-- Run `npm run migration:dev`
-- Run `npm run migration:test`
+- Run `npm run migrate:dev`
+- Run `npm run migrate:test`
 
 #### Run test cases
 - Run `npm test`
